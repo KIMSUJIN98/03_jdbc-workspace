@@ -1,5 +1,6 @@
 package com.kh.controller;
 
+import java.sql.Date;
 import java.util.ArrayList;
 
 import com.kh.model.dao.BookDao;
@@ -31,6 +32,46 @@ public class BookController {
 			new BookMenu().displayBookList(list);
 		}
 		
+	}
+	
+	public void selectByUserId(String mId) {
+		Book b = new BookDao().selectByUserId(mId);
+		
+		if(b == null) {
+			new BookMenu().displayNoData(mId + "회원이 대여한 도서는 없습니다.");
+		}else {
+			new BookMenu().displayRentBook(b);
+		}
+	}
+	
+	public void selectByKeyword(String keyword) {
+		ArrayList<Book> list = new BookDao().selectByKeyword(keyword);
+		
+		if(list.isEmpty()) {
+			new BookMenu().displayNoData(keyword + "를 키워드로 가진 도서 대여목록이 없습니다.");
+		}else {
+			new BookMenu().displayBookList(list);
+		}
+	}
+	
+	public void updateEndDate(String mId) {
+		int result = new BookDao().updateEndDate(mId);
+		
+		if(result > 0) {
+			new BookMenu().displaySuccess("성공적으로 반납기한이 연장되었습니다.");
+		}else {
+			new BookMenu().displayFail("반납기한 연장에 실패했습니다.");
+		}
+	}
+	
+	public void deleteBook(String mId) {
+		int result = new BookDao().deleteBook(mId);
+		
+		if(result > 0) {
+			new BookMenu().displaySuccess("성공적으로 반납 처리되었습니다.");
+		}else {
+			new BookMenu().displayFail("도서 반납에 실패했습니다.");
+		}
 	}
 
 

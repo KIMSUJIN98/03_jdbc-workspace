@@ -24,4 +24,11 @@ NOCACHE;
 INSERT INTO BOOK
 VALUES(SEQ_MNO.NEXTVAL, 'user01', 'pass01', '김수진', '01050499858', 1, '트렌드 코리아 2023', '김난도 외', '미래의 창', DEFAULT, DEFAULT);
 
+INSERT INTO BOOK
+VALUES(SEQ_MNO.NEXTVAL, 'user02', 'pass02', '손흥민', '01032654587', 2, '모든 것은 기본에서 시작한다', '손웅정', '수오서재', DEFAULT, DEFAULT);
+
+INSERT INTO BOOK
+VALUES(SEQ_MNO.NEXTVAL, 'user03', 'pass03', '조규성', '01024576532', 3, '김훈 장편소설: 하얼빈', '김훈', '문학동네', DEFAULT, DEFAULT);
+
 COMMIT;
+
