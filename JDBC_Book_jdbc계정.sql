@@ -22,6 +22,9 @@ CREATE SEQUENCE SEQ_MNO
 NOCACHE;
 
 INSERT INTO BOOK
+VALUES(SEQ_MNO.NEXTVAL, 'admin', 'admin1', '김수진', '01050499858', 0, '프로그램 사용설명서', '설계자', '설계자 뇌', DEFAULT, DEFAULT);
+
+INSERT INTO BOOK
 VALUES(SEQ_MNO.NEXTVAL, 'user01', 'pass01', '김수진', '01050499858', 1, '트렌드 코리아 2023', '김난도 외', '미래의 창', DEFAULT, DEFAULT);
 
 INSERT INTO BOOK
@@ -29,6 +32,9 @@ VALUES(SEQ_MNO.NEXTVAL, 'user02', 'pass02', '손흥민', '01032654587', 2, '모든 것
 
 INSERT INTO BOOK
 VALUES(SEQ_MNO.NEXTVAL, 'user03', 'pass03', '조규성', '01024576532', 3, '김훈 장편소설: 하얼빈', '김훈', '문학동네', DEFAULT, DEFAULT);
+
+INSERT INTO BOOK
+VALUES(SEQ_MNO.NEXTVAL, 'user04', 'pass04', '이승우', '01054236598', 4, '트렌드 코리아 2022', '김난도 외', '미래의 창', DEFAULT, DEFAULT);
 
 COMMIT;
 

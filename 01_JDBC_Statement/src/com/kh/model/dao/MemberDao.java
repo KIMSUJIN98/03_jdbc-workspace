@@ -65,7 +65,7 @@ public class MemberDao {
 		
 		try {
 			// 1) jdbc driver 등록
-			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Class.forName("oracle.jdbc.driver.OracleDriver"); 														// oracle.jdbc.driver 패키지에 있는 OracleDriver 클래스 파일을 등록하겠다! 
 		
 			// 2) Connection 객체 생성 == db에 연결
 			conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "JDBC", "JDBC");
