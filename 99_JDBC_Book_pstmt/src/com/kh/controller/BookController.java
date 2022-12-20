@@ -9,15 +9,20 @@ import com.kh.view.BookMenu;
 public class BookController {
 	
 	public boolean adminOk(String adminId, String adminPwd) {
-		Book b = new BookDao().adminOk(adminId, adminPwd);
+		Book b = new BookDao().adminOk(adminId);
+		
 		boolean flag = false;
 		
-		if(b.getmPwd().equals("admin1")) {
-			flag = true;
+		if(b == null) {
+			new BookMenu().displayNoData("잘못된 관리자 아이디 입니다.");
 		}else {
-			flag = false;
+			
+			if(adminPwd.equals(b.getmPwd())) {
+				flag = true;
+			}else {
+				flag = false;
+			}
 		}
-		
 		return flag;
 	}
 	

@@ -23,6 +23,10 @@ public class BookMenu {
 		
 		boolean flag = bc.adminOk(adminId, adminPwd);
 		
+		if(flag == false) {
+			System.out.println("\n관리자 정보가 올바르지 않으므로 프로그램에 접속할 수 없습니다. 다시 시작해주세요.");
+			return;
+		}
 		
 		while(flag == true) { //-- while start
 			

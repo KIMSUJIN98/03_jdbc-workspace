@@ -11,7 +11,7 @@ import com.kh.model.vo.Book;
 
 public class BookDao {
 	
-	public Book adminOk(String adminId, String adminPwd) {
+	public Book adminOk(String adminId) {
 		
 		Book b = null;
 		
@@ -19,7 +19,7 @@ public class BookDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String sql = "SELECT * FROM (SELECT * FROM BOOK WHERE MID LIKE ?) WHERE MPWD LIKE ?";
+		String sql = "SELECT * FROM BOOK WHERE MID = ?";
 		
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -27,7 +27,6 @@ public class BookDao {
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1, adminId);
-			pstmt.setString(2, adminPwd);
 			
 			rset = pstmt.executeQuery();
 			
