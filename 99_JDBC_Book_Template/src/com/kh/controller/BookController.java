@@ -2,13 +2,25 @@ package com.kh.controller;
 
 import java.util.ArrayList;
 
-import com.kh.model.dao.BookDao;
 import com.kh.model.vo.Book;
 import com.kh.service.BookService;
 import com.kh.view.BookMenu;
 
+/**
+ * BookController.java
+ * @author ksj
+ * @since 2022.12.21
+ * @version 1.0
+ *
+ */
 public class BookController {
 	
+	/**
+	 * 사용자로부터 관리자 아이디, 비번을 입력받아 일치하는 경우에만 프로그램이 실행되도록 처리하는 메소드
+	 * @param adminId	: 사용자가 입력한 아이디
+	 * @param adminPwd	: 사용자가 입력한 비번
+	 * @return			: flag : 관리자 계정 일치여부 반환
+	 */
 	public boolean adminOk(String adminId, String adminPwd) {
 		Book b = new BookService().adminOk(adminId);
 		
@@ -27,6 +39,17 @@ public class BookController {
 		return flag;
 	}
 	
+	/**
+	 * 사용자로부터 값을 입력받아 새로운 데이터를 추가해주는 메소드
+	 * @param mId	: 사용자가 입력한 회원 아이디
+	 * @param mPwd	: 사용자가 입력한 회원 비번
+	 * @param mName	: 사용자가 입력한 회원 이름
+	 * @param phone	: 사용자가 입력한 회원 연락처
+	 * @param bNo	: 사용자가 입력한 도서 번호
+	 * @param bName	: 사용자가 입력한 도서명
+	 * @param wName : 사용자가 입력한 작가명
+	 * @param pName : 사용자가 입력한 출판사명
+	 */
 	public void insertRent(String mId, String mPwd, String mName, String phone, String bNo, String bName, String wName, String pName) {
 		
 		Book b = new Book(mId, mPwd, mName, phone, Integer.parseInt(bNo), bName, wName, pName);
@@ -40,6 +63,9 @@ public class BookController {
 		}
 	}
 	
+	/**
+	 * 사용자의 전체 리스트 조회 요청을 처리해주는 메소드
+	 */
 	public void selectList() {
 		ArrayList<Book> list = new BookService().selectList();
 		
@@ -52,6 +78,10 @@ public class BookController {
 		
 	}
 	
+	/**
+	 * 사용자가 입력한 회원 아이디의 Book 객체 조회 요청을 처리해주는 메소드
+	 * @param mId		: 사용자가 입력한 회원 아이디
+	 */
 	public void selectByUserId(String mId) {
 		Book b = new BookService().selectByUserId(mId);
 		
@@ -62,6 +92,10 @@ public class BookController {
 		}
 	}
 	
+	/**
+	 * 사용자가 입력한 키워드를 가진 도서명을 모두 조회 처리해주는 메소드
+	 * @param keyword		: 사용자가 입력한 키워드
+	 */
 	public void selectByKeyword(String keyword) {
 		ArrayList<Book> list = new BookService().selectByKeyword(keyword);
 		
@@ -72,6 +106,10 @@ public class BookController {
 		}
 	}
 	
+	/**
+	 * 사용자가 입력한 회원 아이디의 반납기한 일주일 연장 요청을 처리해주는 메소드
+	 * @param mId		: 사용자가 입력한 회원 아이디
+	 */
 	public void updateEndDate(String mId) {
 		int result = new BookService().updateEndDate(mId);
 		
@@ -82,6 +120,10 @@ public class BookController {
 		}
 	}
 	
+	/**
+	 * 사용자가 입력한 회원 아이디의 Book 객체 삭제 요청을 처리해주는 메소드
+	 * @param mId		: 사용자가 입력한 회원 아이디
+	 */
 	public void deleteBook(String mId) {
 		int result = new BookService().deleteBook(mId);
 		

@@ -1,7 +1,6 @@
 package com.kh.model.dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,8 +9,21 @@ import java.util.ArrayList;
 import static com.kh.common.JDBCTemplate.*;
 import com.kh.model.vo.Book;
 
+/**
+ * BookDao.java
+ * @author ksj
+ * @since 2022.12.21
+ * @version 1.0
+ *
+ */
 public class BookDao {
 	
+	/** 
+	 * 사용자로부터 관리자 아이디, 비번을 입력받아 일치하는 경우에만 프로그램이 실행되도록 처리하는 메소드
+	 * @param conn
+	 * @param adminId   : 사용자로부터 입력받은 아이디
+	 * @return			: 사용자가 입력한 아이디로 조회된 Book 객체 하나 반환
+	 */
 	public Book adminOk(Connection conn, String adminId) {
 		
 		Book b = null;
@@ -51,6 +63,12 @@ public class BookDao {
 		return b;
 	}
 	
+	/**
+	 * 사용자로부터 값을 입력받아 새로운 데이터를 추가해주는 메소드
+	 * @param conn
+	 * @param b			: 사용자로부터 입력받은 Book 객체 하나
+	 * @return			: 수행결과 (처리된 행수)
+	 */
 	public int insertRent(Connection conn, Book b) {
 		
 		int result = 0;
@@ -79,6 +97,11 @@ public class BookDao {
 		return result;
 	}
 	
+	/**
+	 * 사용자의 전체 리스트 조회 요청을 처리해주는 메소드
+	 * @param conn
+	 * @return			: 조회된 전체 리스트
+	 */
 	public ArrayList<Book> selectList(Connection conn) {
 		
 		ArrayList<Book> list = new ArrayList<Book>();
@@ -86,7 +109,7 @@ public class BookDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String sql = "SELECT * FROM BOOK";
+		String sql = "SELECT * FROM BOOK WHERE MID != 'admin'";
 		
 			try {
 				pstmt = conn.prepareStatement(sql);
@@ -119,6 +142,12 @@ public class BookDao {
 		return list;
 	}
 	
+	/**
+	 * 사용자가 입력한 회원 아이디의 Book 객체 조회 요청을 처리해주는 메소드
+	 * @param conn
+	 * @param mId		: 사용자가 입력한 회원 아이디
+	 * @return			: 사용자가 입력한 회원 아이디를 가진 Book 객체 하나
+	 */
 	public Book selectByUserId(Connection conn, String mId) {
 		Book b = null;
 		
@@ -157,6 +186,12 @@ public class BookDao {
 		return b;
 	}
 	
+	/**
+	 * 사용자가 입력한 키워드를 가진 도서명을 모두 조회 처리해주는 메소드
+	 * @param conn
+	 * @param keyword		: 사용자가 입력한 키워드
+	 * @return				: 사용자가 입력한 키워드를 가진 도서명 모두를 담은 리스트
+	 */
 	public ArrayList<Book> selectByKeyword(Connection conn, String keyword) {
 		ArrayList<Book> list = new ArrayList<>();
 		
@@ -198,6 +233,12 @@ public class BookDao {
 		return list;
 	}
 	
+	/**
+	 * 사용자가 입력한 회원 아이디의 반납기한 일주일 연장 요청을 처리해주는 메소드
+	 * @param conn
+	 * @param mId		: 사용자가 입력한 회원 아이디
+	 * @return			: 수행결과 (처리된 행수)
+	 */
 	public int updateEndDate(Connection conn, String mId) {
 		int result = 0;
 		
@@ -219,6 +260,12 @@ public class BookDao {
 		return result;
 	}
 	
+	/**
+	 * 사용자가 입력한 회원 아이디의 Book 객체 삭제 요청을 처리해주는 메소드
+	 * @param conn
+	 * @param mId		: 사용자가 입력한 회원 아이디
+	 * @return			: 수행결과 (처리된 행수)
+	 */
 	public int deleteBook(Connection conn, String mId) {
 		int result = 0;
 		

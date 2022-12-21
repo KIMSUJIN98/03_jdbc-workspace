@@ -6,6 +6,13 @@ import java.util.Scanner;
 import com.kh.controller.BookController;
 import com.kh.model.vo.Book;
 
+/**
+ * BookMenu.java
+ * @author ksj
+ * @since  2022.12.21
+ * @version 1.0
+ *
+ */
 public class BookMenu {
 	
 	private Scanner sc= new Scanner(System.in);
@@ -15,19 +22,23 @@ public class BookMenu {
 	public void mainMenu() { //-- mainMenu start
 		
 		System.out.println("\n=============== [ 관리자로 로그인ㄱ ] ===============\n");
+		// 관리자 계정으로 로그인
 		System.out.print("관리자 아이디 : ");
 		String adminId = sc.nextLine();
 		
 		System.out.print("관리자 비밀번호 : ");
 		String adminPwd = sc.nextLine();
 		
+		// 관리자 계정과 일치여부 판별
 		boolean flag = bc.adminOk(adminId, adminPwd);
 		
+		// 관리자 계정과 불일치 - 로그인 실패
 		if(flag == false) {
 			System.out.println("\n관리자 정보가 올바르지 않으므로 프로그램에 접속할 수 없습니다. 다시 시작해주세요.");
 			return;
 		}
 		
+		// 관리자 계정과 일치 - 로그인 성공
 		while(flag == true) { //-- while start
 			
 			System.out.println("\n=============== [ 도서대여 프로그램 ] ===============\n");
@@ -66,6 +77,9 @@ public class BookMenu {
 		
 	} //-- mainMenu end
 	
+	/**
+	 * 메뉴 1번: 사용자로부터 추가할 새로운 데이터 값을 입력받는 구문
+	 */
 	public void inputRent() {
 		System.out.println("\n==== 대여하기(추가) ====");
 		
@@ -106,6 +120,9 @@ public class BookMenu {
 		return sc.nextLine();
 	}
 	
+	/**
+	 * 사용자로부터 반납기한 일주일을 연장할 회원 아이디를 입력받는 구문
+	 */
 	public void updateEndDate() {
 		System.out.println("\n==== 반납기한 연장(변경) ====");
 		
