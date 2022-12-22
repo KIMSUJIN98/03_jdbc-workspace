@@ -23,7 +23,7 @@ public class ProductMenu {
 			System.out.println("4. 상품 삭제 하기 (상품 id로 조회해서 삭제)");
 			System.out.println("5. 상품 검색 하기 (상품 이름으로 키워드 검색)");
 			System.out.println("0. 프로그램 종료하기");
-			System.out.println("======================");
+			System.out.println("==========================");
 			System.out.print(">> 메뉴 선택 : ");
 			int menu = sc.nextInt();
 			
