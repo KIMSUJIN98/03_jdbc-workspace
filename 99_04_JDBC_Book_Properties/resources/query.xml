@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<!-- xml 파일에서의 주석 -->
+	<entry key="adminOk">
+		SELECT
+			   MNO
+			 , MID
+			 , MPWD
+			 , MNAME
+			 , MPHONE
+			 , BNO
+			 , BNAME
+			 , WNAME
+			 , PNAME
+			 , RENTDATE
+			 , ENDDATE
+		  FROM BOOK 
+		 WHERE MID = ?
+	</entry>
+	
+	<entry key="insertRent">
+		INSERT 
+			INTO BOOK 
+				 (
+				   MNO
+			 	 , MID
+			 	 , MPWD
+			 	 , MNAME
+			 	 , MPHONE
+			 	 , BNO
+			 	 , BNAME
+			 	 , WNAME
+			 	 , PNAME
+			 	 , RENTDATE
+			 	 , ENDDATE
+				 )
+			VALUES
+				 (
+				   SEQ_MNO.NEXTVAL
+				 , ?
+				 , ?
+				 , ?
+				 , ?
+				 , ?
+				 , ?
+				 , ?
+				 , ?
+				 , DEFAULT
+				 , DEFAULT
+				 )
+	</entry>
+	
+	<entry key="selectList">
+		SELECT
+			   MNO
+			 , MID
+			 , MPWD
+			 , MNAME
+			 , MPHONE
+			 , BNO
+			 , BNAME
+			 , WNAME
+			 , PNAME
+			 , RENTDATE
+			 , ENDDATE
+		  FROM BOOK
+		 WHERE MID != 'admin'
+	</entry>
+	
+	<entry key="selectByUserId">
+		SELECT
+			   MNO
+			 , MID
+			 , MPWD
+			 , MNAME
+			 , MPHONE
+			 , BNO
+			 , BNAME
+			 , WNAME
+			 , PNAME
+			 , RENTDATE
+			 , ENDDATE
+		  FROM BOOK
+		 WHERE MID = ?
+	</entry>
+	
+	<entry key="selectByKeyword">
+		SELECT
+			   MNO
+			 , MID
+			 , MPWD
+			 , MNAME
+			 , MPHONE
+			 , BNO
+			 , BNAME
+			 , WNAME
+			 , PNAME
+			 , RENTDATE
+			 , ENDDATE
+		  FROM BOOK 
+		 WHERE BNAME LIKE '%' || ? || '%'
+	</entry>
+	
+	<entry key="updateEndDate">
+		UPDATE BOOK
+		   SET ENDDATE = ENDDATE+7 
+		 WHERE MID = ?
+	</entry>
+	
+	<entry key="deleteBook">
+		DELETE 
+		  FROM BOOK 
+		 WHERE MID = ?
+	</entry>
+	
+</properties>
